@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Outfique — Collections</title>
+		<link rel="stylesheet" href="outflique beh.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--bg-grad: linear-gradient(
+					135deg,
+					#5a3a2b 0%,
+					#7a4b33 30%,
+					#caa14a 62%,
+					#f1d27a 100%
+				);
+				--card-bg: rgba(255, 255, 255, 0.18);
+				--card-stroke: rgba(255, 255, 255, 0.35);
+				--shadow: rgba(22, 16, 12, 0.28);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				min-height: 100%;
+				font-family: "Inter", system-ui, sans-serif;
+				color: #1f1a17;
+			}
+
+			body {
+				background: var(--bg-grad);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 32px 24px 48px;
+			}
+
+			.page {
+				width: min(1200px, 100%);
+				background: rgba(255, 255, 255, 0.62);
+				border-radius: 32px;
+				padding: clamp(24px, 4vw, 44px);
+				box-shadow: 0 30px 70px var(--shadow);
+				backdrop-filter: blur(12px);
+			}
+
+			.header {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 28px;
+			}
+
+			.logo {
+				width: 120px;
+				height: auto;
+				filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.15));
+			}
+
+			.title {
+				font-family: "Playfair Display", serif;
+				font-size: clamp(24px, 3.2vw, 36px);
+				letter-spacing: 3px;
+				text-transform: uppercase;
+			}
+
+			.selection {
+				font-size: 14px;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: rgba(31, 26, 23, 0.6);
+			}
+
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+				gap: 22px;
+			}
+
+			.card {
+				position: relative;
+				border-radius: 20px;
+				overflow: hidden;
+				background: var(--card-bg);
+				border: 1px solid var(--card-stroke);
+				box-shadow: 0 16px 28px var(--shadow);
+				transform: translateY(20px);
+				opacity: 0;
+				transition: transform 0.4s ease, box-shadow 0.4s ease;
+				cursor: pointer;
+			}
+
+			.card.revealed {
+				transform: translateY(0);
+				opacity: 1;
+			}
+
+			.card:hover {
+				transform: translateY(-6px) scale(1.02);
+				box-shadow: 0 24px 40px var(--shadow);
+			}
+
+			.card.active {
+				outline: 2px solid var(--outflique-peach, #f9a6a1);
+				box-shadow: 0 30px 46px rgba(249, 166, 161, 0.45);
+			}
+
+			.card img {
+				width: 100%;
+				height: 150px;
+				object-fit: cover;
+				display: block;
+				animation: float 6s ease-in-out infinite;
+			}
+
+			.card:nth-child(2) img {
+				animation-delay: 0.4s;
+			}
+
+			.card:nth-child(3) img {
+				animation-delay: 0.8s;
+			}
+
+			.card:nth-child(4) img {
+				animation-delay: 1.2s;
+			}
+
+			.card:nth-child(5) img {
+				animation-delay: 1.6s;
+			}
+
+			.card:nth-child(6) img {
+				animation-delay: 2s;
+			}
+
+			@keyframes float {
+				0% {
+					transform: translateY(0px);
+				}
+				50% {
+					transform: translateY(-6px);
+				}
+				100% {
+					transform: translateY(0px);
+				}
+			}
+
+			.label {
+				padding: 12px 10px 14px;
+				font-weight: 700;
+				text-align: center;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				background: rgba(255, 255, 255, 0.75);
+			}
+
+			.sparkle {
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.4), transparent 40%);
+				opacity: 0;
+				transition: opacity 0.4s ease;
+				pointer-events: none;
+			}
+
+			.card:hover .sparkle,
+			.card.active .sparkle {
+				opacity: 1;
+			}
+
+			.pulse {
+				animation: pulse 0.6s ease;
+			}
+
+			@keyframes pulse {
+				0% {
+					transform: scale(1);
+				}
+				50% {
+					transform: scale(1.04);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+
+			@media (max-width: 700px) {
+				.card img {
+					height: 130px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="page">
+			<header class="header">
+				<img class="logo" src="DESIGN NI JARED.png" alt="Outfique logo" />
+				<div class="title">Outfique Collections</div>
+				<div class="selection" id="selection">Select a category</div>
+			</header>
+
+			<section class="grid" id="categoryGrid">
+				<article class="card" data-category="Formal" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="Formal style" />
+					<div class="label">Formal</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Casual" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1521577352947-9bb58764b69a?auto=format&fit=crop&w=600&q=80" alt="Casual style" />
+					<div class="label">Casual</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Beach Wear" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Beach wear" />
+					<div class="label">Beach Wear</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Y2K" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80" alt="Y2K style" />
+					<div class="label">Y2K</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Minimalist" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="Minimalist" />
+					<div class="label">Minimalist</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Retro" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1463100099107-aa0980c362e6?auto=format&fit=crop&w=600&q=80" alt="Retro" />
+					<div class="label">Retro</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Street Wear" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Street wear" />
+					<div class="label">Street Wear</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Vintage" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80" alt="Vintage" />
+					<div class="label">Vintage</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Hip Hop" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80" alt="Hip hop" />
+					<div class="label">Hip Hop</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Artsy" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80" alt="Artsy" />
+					<div class="label">Artsy</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Trendy" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600&q=80" alt="Trendy" />
+					<div class="label">Trendy</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Classy" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1475180098004-ca77a66827be?auto=format&fit=crop&w=600&q=80" alt="Classy" />
+					<div class="label">Classy</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Haute Couture" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" alt="Haute couture" />
+					<div class="label">Haute Couture</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Sexy" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Sexy" />
+					<div class="label">Sexy</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="School Wear" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="School wear" />
+					<div class="label">School Wear</div>
+					<div class="sparkle"></div>
+				</article>
+				<article class="card" data-category="Lagenlook" data-link="creation outfique.html" role="button" tabindex="0">
+					<img src="https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?auto=format&fit=crop&w=600&q=80" alt="Lagenlook" />
+					<div class="label">Lagenlook</div>
+					<div class="sparkle"></div>
+				</article>
+			</section>
+		</main>
+
+		<script src="collections.js"></script>
+	</body>
+</html>

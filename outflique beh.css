@@ -1,0 +1,24 @@
+:root {
+	/* Outflique universal palette (Summer Sunset) */
+	--outflique-teal: #5cc1b6;
+	--outflique-mint: #a8c9b6;
+	--outflique-cream: #f1e3b6;
+	--outflique-peach: #f9a6a1;
+	--outflique-pink: #f75088;
+
+	/* Neutrals */
+	--outflique-ink: #2a2624;
+	--outflique-paper: #fff7ef;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	color: var(--outflique-ink);
+	background: var(--outflique-paper);
+}
