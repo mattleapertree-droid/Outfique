@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Outfique — Start</title>
+		<meta
+			name="description"
+			content="Outfique is a smart style studio that helps you explore collections, design outfits, and learn about the team."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Great+Vibes&family=Inter:wght@300;400;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--bg-grad: linear-gradient(120deg, #5cc1b6 0%, #a8c9b6 30%, #f1e3b6 60%, #f9a6a1 85%, #f75088 100%);
+				--card: rgba(255, 255, 255, 0.75);
+				--shadow: rgba(24, 18, 14, 0.2);
+				--accent: #f75088;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				min-height: 100vh;
+				background: var(--bg-grad);
+				font-family: "Inter", system-ui, sans-serif;
+				color: #2a2624;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding: 32px;
+			}
+
+			.stage {
+				width: min(1100px, 100%);
+				background: var(--card);
+				border-radius: 32px;
+				box-shadow: 0 24px 60px var(--shadow);
+				padding: clamp(26px, 4vw, 44px);
+				display: grid;
+				grid-template-columns: minmax(240px, 1fr) minmax(260px, 1fr);
+				gap: 32px;
+			}
+
+			.brand h1 {
+				font-family: "Great Vibes", cursive;
+				font-size: clamp(36px, 5vw, 68px);
+				margin: 0;
+				color: var(--accent);
+			}
+
+			.brand p {
+				margin: 10px 0 20px;
+				font-size: 16px;
+				line-height: 1.6;
+			}
+
+			.nav {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 12px;
+			}
+
+			.nav a {
+				text-decoration: none;
+				padding: 10px 18px;
+				border-radius: 999px;
+				background: #fff;
+				font-weight: 600;
+				color: #2a2624;
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+			}
+
+			.callout {
+				background: rgba(255, 255, 255, 0.85);
+				border-radius: 24px;
+				padding: 20px 24px;
+				box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+				font-size: 15px;
+				line-height: 1.6;
+			}
+
+			.links {
+				margin-top: 14px;
+				display: grid;
+				gap: 12px;
+			}
+
+			.links a {
+				display: block;
+				text-decoration: none;
+				font-weight: 600;
+				color: #2a2624;
+				background: rgba(255, 255, 255, 0.7);
+				padding: 12px 16px;
+				border-radius: 16px;
+			}
+
+			@media (max-width: 880px) {
+				.stage {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main class="stage">
+			<section class="brand">
+				<div class="welcome">Welcome to</div>
+				<h1>Outfique</h1>
+				<p>
+					Your style studio for discovering collections, planning outfits, and meeting the creative team behind
+					the project.
+				</p>
+				<div class="nav">
+					<a href="1st outfique.html">Home</a>
+					<a href="collections ko beh.html">Collections</a>
+					<a href="creation outfique.html">Create Outfit</a>
+					<a href="about outfique.html">About</a>
+					<a href="team.html">Team</a>
+				</div>
+			</section>
+			<section class="callout">
+				<strong>Quick start:</strong>
+				<p>
+					Pick a collection to jump into the outfit creator, or learn more about Outfique’s mission and the
+					people behind it.
+				</p>
+				<div class="links">
+					<a href="collections ko beh.html">Browse the style categories →</a>
+					<a href="creation outfique.html">Launch the outfit generator →</a>
+					<a href="about outfique.html">Read the project story →</a>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
