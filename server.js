@@ -3,8 +3,10 @@ const fs = require("fs");
 const path = require("path");
 const { URL } = require("url");
 
-const PORT = 5500;
+const parsedPort = parseInt(process.env.PORT, 10);
+const PORT = Number.isNaN(parsedPort) ? 5500 : parsedPort;
 const ROOT = __dirname;
+const DEFAULT_FILE = "index.html";
 const HF_MODEL = "stabilityai/stable-diffusion-2";
 
 const mimeTypes = {
@@ -76,8 +78,19 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  let filePath = path.join(ROOT, requestUrl.pathname === "/" ? "creation outfique.html" : requestUrl.pathname);
-  if (!filePath.startsWith(ROOT)) {
+  let decodedPath;
+  try {
+    decodedPath = decodeURIComponent(requestUrl.pathname);
+  } catch (error) {
+    send(res, 400, "Bad request");
+    return;
+  }
+  const relativePath = decodedPath.replace(/^\/+/, "");
+  const targetPath = relativePath === "" ? DEFAULT_FILE : relativePath;
+  const rootPath = path.resolve(ROOT);
+  let filePath = path.resolve(rootPath, targetPath);
+  const relativePathFromRoot = path.relative(rootPath, filePath);
+  if (relativePathFromRoot.startsWith("..") || path.isAbsolute(relativePathFromRoot)) {
     send(res, 403, "Forbidden");
     return;
   }
