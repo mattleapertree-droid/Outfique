@@ -238,7 +238,7 @@
 				</div>
 				<div class="site-link" aria-live="polite">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl">Loading link...</a>
+					<a class="site-url" id="siteUrl" href="#">Loading link...</a>
 					<button class="cta" type="button" id="copySiteLink">Copy link</button>
 				</div>
 			</section>
@@ -277,7 +277,7 @@
 		<script>
 			const siteUrl = document.getElementById("siteUrl");
 			const copySiteLink = document.getElementById("copySiteLink");
-			const resolvedLink = window.location.protocol === "file:" ? window.location.href : window.location.origin;
+			const resolvedLink = window.location.href;
 
 			siteUrl.textContent = resolvedLink;
 			siteUrl.setAttribute("href", resolvedLink);
