@@ -88,7 +88,6 @@ const server = http.createServer((req, res) => {
   const relativePath = decodedPath.replace(/^\/+/, "");
   const targetPath = relativePath === "" ? DEFAULT_FILE : relativePath;
   const rootPath = path.resolve(ROOT);
-  const rootPathWithSeparator = rootPath.endsWith(path.sep) ? rootPath : rootPath + path.sep;
   let filePath = path.resolve(rootPath, targetPath);
   const relativePathFromRoot = path.relative(rootPath, filePath);
   if (relativePathFromRoot.startsWith("..") || path.isAbsolute(relativePathFromRoot)) {
