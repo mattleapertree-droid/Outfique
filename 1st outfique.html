@@ -250,8 +250,8 @@
 				</div>
 				<div class="site-link">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl" href=""></a>
-					<button class="cta" type="button" id="copySiteLink" aria-describedby="siteUrl">Copy link</button>
+					<a class="site-url" id="siteUrl" href="1st outfique.html">1st outfique.html</a>
+					<button class="cta" type="button" id="copySiteLink" aria-describedby="copyStatus" aria-label="Copy website link">Copy link</button>
 					<span class="sr-only" id="copyStatus" aria-live="polite"></span>
 				</div>
 			</section>
@@ -294,7 +294,7 @@
 			const resolvedLink = window.location.href;
 			const userFeedbackSuccessDurationMs = 2000; // Keep the success message brief so the UI resets quickly.
 			const userFeedbackErrorDurationMs = 2500; // Slightly longer to give users time to read the guidance.
-			const localhostHostnames = ["localhost", "127.0.0.1", "::1", "[::1]", "localhost.localdomain", "0.0.0.0"];
+			const localhostHostnames = ["localhost", "127.0.0.1", "0.0.0.0", "::1", "localhost.localdomain"];
 			const isLocalhost = localhostHostnames.includes(window.location.hostname);
 			const canUseClipboard = Boolean(navigator.clipboard && (window.isSecureContext || isLocalhost));
 
