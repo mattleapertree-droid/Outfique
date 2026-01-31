@@ -248,9 +248,9 @@
 					<a class="cta" href="creation outfique.html">Go to creation →</a>
 					<a class="cta" href="team.html">Meet the team →</a>
 				</div>
-				<div class="site-link" aria-live="polite">
+				<div class="site-link">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl" href="">Website link loading...</a>
+					<a class="site-url" id="siteUrl" href="">Loading current page URL...</a>
 					<button class="cta" type="button" id="copySiteLink">Copy link</button>
 					<span class="sr-only" id="copyStatus" aria-live="polite"></span>
 				</div>
@@ -307,16 +307,6 @@
 			}
 
 			copySiteLink.addEventListener("click", async () => {
-				if (!canUseClipboard) {
-					copySiteLink.textContent = "Copy unavailable";
-					copyStatus.textContent = "Copy unavailable. Please select the link above and copy it manually.";
-					setTimeout(() => {
-						copySiteLink.textContent = "Copy link";
-						copyStatus.textContent = "";
-					}, errorResetDelayMs);
-					siteUrl.focus();
-					return;
-				}
 				try {
 					await navigator.clipboard.writeText(resolvedLink);
 					copySiteLink.textContent = "Link copied!";
