@@ -306,26 +306,27 @@
 				copyStatus.textContent = "Copy unavailable. Please select the link above and copy it manually.";
 			}
 
-			copySiteLink.addEventListener("click", async () => {
-				try {
-					await navigator.clipboard.writeText(resolvedLink);
-					copySiteLink.textContent = "Link copied!";
-					copyStatus.textContent = "Link copied to clipboard.";
-					setTimeout(() => {
-						copySiteLink.textContent = "Copy link";
-						copyStatus.textContent = "";
-					}, successResetDelayMs);
-				} catch (error) {
-					console.error("Clipboard write failed:", error);
-					copySiteLink.textContent = "Copy failed";
-					copyStatus.textContent = "Copy failed. Please select the link above and copy it manually.";
-					setTimeout(() => {
-						copySiteLink.textContent = "Copy link";
-						copyStatus.textContent = "";
-					}, errorResetDelayMs);
-					siteUrl.focus();
-				}
-			});
+			if (canUseClipboard) {
+				copySiteLink.addEventListener("click", async () => {
+					try {
+						await navigator.clipboard.writeText(resolvedLink);
+						copySiteLink.textContent = "Link copied!";
+						copyStatus.textContent = "Link copied to clipboard.";
+						setTimeout(() => {
+							copySiteLink.textContent = "Copy link";
+							copyStatus.textContent = "";
+						}, successResetDelayMs);
+					} catch (error) {
+						console.error("Clipboard write failed:", error);
+						copySiteLink.textContent = "Copy failed";
+						copyStatus.textContent = "Copy failed. Please select the link above and copy it manually.";
+						setTimeout(() => {
+							copySiteLink.textContent = "Copy link";
+							copyStatus.textContent = "";
+						}, errorResetDelayMs);
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
