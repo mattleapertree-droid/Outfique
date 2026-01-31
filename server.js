@@ -85,8 +85,9 @@ const server = http.createServer((req, res) => {
   }
   const safePath = decodedPath === "/" ? "/creation outfique.html" : decodedPath;
   const rootPath = path.resolve(ROOT);
+  const rootPrefix = rootPath.endsWith(path.sep) ? rootPath : rootPath + path.sep;
   let filePath = path.resolve(rootPath, `.${safePath}`);
-  if (!filePath.startsWith(rootPath + path.sep)) {
+  if (!filePath.startsWith(rootPrefix)) {
     send(res, 403, "Forbidden");
     return;
   }
