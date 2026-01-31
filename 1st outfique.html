@@ -292,20 +292,14 @@
 			const copySiteLink = document.getElementById("copySiteLink");
 			const copyStatus = document.getElementById("copyStatus");
 			const resolvedLink = window.location.href;
-			const successResetDelayMs = 2000; // Keep the success message brief so the UI resets quickly.
-			const errorResetDelayMs = 2500; // Slightly longer to give users time to read the guidance.
-			const localhostHostnames = ["localhost", "127.0.0.1", "::1", "localhost.localdomain"];
+			const userFeedbackSuccessDurationMs = 2000; // Keep the success message brief so the UI resets quickly.
+			const userFeedbackErrorDurationMs = 2500; // Slightly longer to give users time to read the guidance.
+			const localhostHostnames = ["localhost", "127.0.0.1", "::1", "[::1]", "localhost.localdomain", "0.0.0.0"];
 			const isLocalhost = localhostHostnames.includes(window.location.hostname);
 			const canUseClipboard = Boolean(navigator.clipboard && (window.isSecureContext || isLocalhost));
 
 			siteUrl.textContent = resolvedLink;
 			siteUrl.setAttribute("href", resolvedLink);
-			if (!canUseClipboard) {
-				copySiteLink.disabled = true;
-				copySiteLink.textContent = "Copy unavailable";
-				copyStatus.textContent = "Copy unavailable. Please select the link above and copy it manually.";
-			}
-
 			if (canUseClipboard) {
 				copySiteLink.addEventListener("click", async () => {
 					try {
@@ -315,7 +309,7 @@
 						setTimeout(() => {
 							copySiteLink.textContent = "Copy link";
 							copyStatus.textContent = "";
-						}, successResetDelayMs);
+						}, userFeedbackSuccessDurationMs);
 					} catch (error) {
 						console.error("Clipboard write failed:", error);
 						copySiteLink.textContent = "Copy failed";
@@ -323,9 +317,13 @@
 						setTimeout(() => {
 							copySiteLink.textContent = "Copy link";
 							copyStatus.textContent = "";
-						}, errorResetDelayMs);
+						}, userFeedbackErrorDurationMs);
 					}
 				});
+			} else {
+				copySiteLink.disabled = true;
+				copySiteLink.textContent = "Copy unavailable";
+				copyStatus.textContent = "Copy unavailable. Please select the link above and copy it manually.";
 			}
 		</script>
 	</body>
