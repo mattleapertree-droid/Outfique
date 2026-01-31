@@ -86,11 +86,12 @@ const server = http.createServer((req, res) => {
   const safePath = decodedPath === "/" ? "creation outfique.html" : decodedPath;
   let relativePath = safePath;
   if (path.isAbsolute(relativePath)) {
-    relativePath = relativePath.replace(/^[A-Za-z]:/, "");
+    const parsedPath = path.parse(relativePath);
+    relativePath = relativePath.slice(parsedPath.root.length);
   }
   relativePath = relativePath.replace(/^[/\\]+/, "");
   const rootPath = path.resolve(ROOT);
-  const rootPrefix = rootPath.endsWith(path.sep) ? rootPath : path.join(rootPath, "");
+  const rootPrefix = path.normalize(rootPath + path.sep);
   let filePath = path.resolve(rootPath, relativePath);
   if (!filePath.startsWith(rootPrefix)) {
     send(res, 403, "Forbidden");
