@@ -238,7 +238,7 @@
 				</div>
 				<div class="site-link" aria-live="polite">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl" href="/">Loading link...</a>
+					<a class="site-url" id="siteUrl">Loading link...</a>
 					<button class="cta" type="button" id="copySiteLink">Copy link</button>
 				</div>
 			</section>
@@ -277,13 +277,10 @@
 		<script>
 			const siteUrl = document.getElementById("siteUrl");
 			const copySiteLink = document.getElementById("copySiteLink");
-			const resolvedLink =
-				window.location.origin && window.location.origin !== "null"
-					? window.location.origin
-					: window.location.href;
+			const resolvedLink = window.location.protocol === "file:" ? window.location.href : window.location.origin;
 
 			siteUrl.textContent = resolvedLink;
-			siteUrl.href = resolvedLink;
+			siteUrl.setAttribute("href", resolvedLink);
 
 			copySiteLink.addEventListener("click", async () => {
 				try {
@@ -293,6 +290,10 @@
 						copySiteLink.textContent = "Copy link";
 					}, 2000);
 				} catch (error) {
+					copySiteLink.textContent = "Copy failed";
+					setTimeout(() => {
+						copySiteLink.textContent = "Copy link";
+					}, 2500);
 					siteUrl.focus();
 				}
 			});
