@@ -90,7 +90,8 @@ const server = http.createServer((req, res) => {
   const rootPath = path.resolve(ROOT);
   const rootPathWithSeparator = rootPath.endsWith(path.sep) ? rootPath : rootPath + path.sep;
   let filePath = path.resolve(rootPath, targetPath);
-  if (!filePath.startsWith(rootPathWithSeparator)) {
+  const relativePathFromRoot = path.relative(rootPath, filePath);
+  if (relativePathFromRoot.startsWith("..") || path.isAbsolute(relativePathFromRoot)) {
     send(res, 403, "Forbidden");
     return;
   }
