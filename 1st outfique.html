@@ -250,8 +250,8 @@
 				</div>
 				<div class="site-link" aria-live="polite">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl" href="" tabindex="-1">Website link loading...</a>
-					<button class="cta" type="button" id="copySiteLink" aria-describedby="copyStatus">Copy link</button>
+					<a class="site-url" id="siteUrl" href="">Website link loading...</a>
+					<button class="cta" type="button" id="copySiteLink">Copy link</button>
 					<span class="sr-only" id="copyStatus" aria-live="polite"></span>
 				</div>
 			</section>
@@ -300,9 +300,10 @@
 
 			siteUrl.textContent = resolvedLink;
 			siteUrl.setAttribute("href", resolvedLink);
-			siteUrl.removeAttribute("tabindex");
 			if (!canUseClipboard) {
-				copySiteLink.setAttribute("aria-disabled", "true");
+				copySiteLink.disabled = true;
+				copySiteLink.textContent = "Copy unavailable";
+				copyStatus.textContent = "Copy unavailable. Please select the link above and copy it manually.";
 			}
 
 			copySiteLink.addEventListener("click", async () => {
