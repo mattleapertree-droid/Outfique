@@ -250,7 +250,7 @@
 				</div>
 				<div class="site-link" aria-live="polite">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl" href="">Loading link...</a>
+					<a class="site-url" id="siteUrl" href="1st outfique.html">1st outfique.html</a>
 					<button class="cta" type="button" id="copySiteLink" aria-describedby="copyStatus">Copy link</button>
 					<span class="sr-only" id="copyStatus" aria-live="polite"></span>
 				</div>
@@ -292,11 +292,23 @@
 			const copySiteLink = document.getElementById("copySiteLink");
 			const copyStatus = document.getElementById("copyStatus");
 			const resolvedLink = window.location.href;
+			const successResetDelay = 2000;
+			const errorResetDelay = 2500;
 
 			siteUrl.textContent = resolvedLink;
 			siteUrl.setAttribute("href", resolvedLink);
 
 			copySiteLink.addEventListener("click", async () => {
+				if (!navigator.clipboard || !window.isSecureContext) {
+					copySiteLink.textContent = "Copy unavailable";
+					copyStatus.textContent = "Copy unavailable. Please select the link above and copy it manually.";
+					setTimeout(() => {
+						copySiteLink.textContent = "Copy link";
+						copyStatus.textContent = "";
+					}, errorResetDelay);
+					siteUrl.focus();
+					return;
+				}
 				try {
 					await navigator.clipboard.writeText(resolvedLink);
 					copySiteLink.textContent = "Link copied!";
@@ -304,14 +316,14 @@
 					setTimeout(() => {
 						copySiteLink.textContent = "Copy link";
 						copyStatus.textContent = "";
-					}, 2000);
+					}, successResetDelay);
 				} catch (error) {
 					copySiteLink.textContent = "Copy failed";
 					copyStatus.textContent = "Copy failed. Please select the link above and copy it manually.";
 					setTimeout(() => {
 						copySiteLink.textContent = "Copy link";
 						copyStatus.textContent = "";
-					}, 2500);
+					}, errorResetDelay);
 					siteUrl.focus();
 				}
 			});
