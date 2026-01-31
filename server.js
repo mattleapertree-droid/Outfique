@@ -83,10 +83,14 @@ const server = http.createServer((req, res) => {
     send(res, 400, "Bad request");
     return;
   }
-  const safePath = decodedPath === "/" ? "/creation outfique.html" : decodedPath;
+  const safePath = decodedPath === "/" ? "creation outfique.html" : decodedPath;
+  let relativePath = safePath.replace(/^[/\\]+/, "");
+  if (path.isAbsolute(relativePath)) {
+    relativePath = relativePath.replace(/^[A-Za-z]:/, "").replace(/^[/\\]+/, "");
+  }
   const rootPath = path.resolve(ROOT);
   const rootPrefix = rootPath.endsWith(path.sep) ? rootPath : rootPath + path.sep;
-  let filePath = path.resolve(rootPath, `.${safePath}`);
+  let filePath = path.resolve(rootPath, relativePath);
   if (!filePath.startsWith(rootPrefix)) {
     send(res, 403, "Forbidden");
     return;
