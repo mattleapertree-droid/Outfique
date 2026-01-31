@@ -250,7 +250,7 @@
 				</div>
 				<div class="site-link" aria-live="polite">
 					<div class="site-label">Website link</div>
-					<a class="site-url" id="siteUrl" href="" aria-hidden="true" tabindex="-1">Website link loading...</a>
+					<a class="site-url" id="siteUrl" href="" tabindex="-1">Website link loading...</a>
 					<button class="cta" type="button" id="copySiteLink" aria-describedby="copyStatus">Copy link</button>
 					<span class="sr-only" id="copyStatus" aria-live="polite"></span>
 				</div>
@@ -294,13 +294,16 @@
 			const resolvedLink = window.location.href;
 			const successResetDelayMs = 2000; // Keep the success message brief so the UI resets quickly.
 			const errorResetDelayMs = 2500; // Slightly longer to give users time to read the guidance.
-			const isLocalhost = ["localhost", "127.0.0.1", "::1", "localhost.localdomain"].includes(window.location.hostname);
+			const localhostHostnames = ["localhost", "127.0.0.1", "::1", "localhost.localdomain"];
+			const isLocalhost = localhostHostnames.includes(window.location.hostname);
 			const canUseClipboard = Boolean(navigator.clipboard && (window.isSecureContext || isLocalhost));
 
 			siteUrl.textContent = resolvedLink;
 			siteUrl.setAttribute("href", resolvedLink);
-			siteUrl.removeAttribute("aria-hidden");
 			siteUrl.removeAttribute("tabindex");
+			if (!canUseClipboard) {
+				copySiteLink.setAttribute("aria-disabled", "true");
+			}
 
 			copySiteLink.addEventListener("click", async () => {
 				if (!canUseClipboard) {
@@ -322,6 +325,7 @@
 						copyStatus.textContent = "";
 					}, successResetDelayMs);
 				} catch (error) {
+					console.error("Clipboard write failed:", error);
 					copySiteLink.textContent = "Copy failed";
 					copyStatus.textContent = "Copy failed. Please select the link above and copy it manually.";
 					setTimeout(() => {
