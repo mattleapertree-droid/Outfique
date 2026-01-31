@@ -88,7 +88,7 @@ const server = http.createServer((req, res) => {
   const targetPath = relativePath === "" ? DEFAULT_FILE : relativePath;
   const rootPath = path.resolve(ROOT);
   let filePath = path.resolve(rootPath, targetPath);
-  if (!(filePath === rootPath || filePath.startsWith(rootPath + path.sep))) {
+  if (!filePath.startsWith(rootPath + path.sep)) {
     send(res, 403, "Forbidden");
     return;
   }
