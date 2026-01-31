@@ -76,8 +76,9 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  let filePath = path.join(ROOT, requestUrl.pathname === "/" ? "creation outfique.html" : requestUrl.pathname);
-  if (!filePath.startsWith(ROOT)) {
+  const decodedPath = decodeURIComponent(requestUrl.pathname);
+  let filePath = path.join(ROOT, decodedPath === "/" ? "creation outfique.html" : decodedPath);
+  if (!filePath.startsWith(ROOT + path.sep)) {
     send(res, 403, "Forbidden");
     return;
   }
