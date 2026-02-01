@@ -76,8 +76,24 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  let filePath = path.join(ROOT, requestUrl.pathname === "/" ? "creation outfique.html" : requestUrl.pathname);
-  if (!filePath.startsWith(ROOT)) {
+  let decodedPath;
+  try {
+    decodedPath = decodeURIComponent(requestUrl.pathname);
+  } catch (error) {
+    send(res, 400, "Bad request");
+    return;
+  }
+  const safePath = decodedPath === "/" ? "creation outfique.html" : decodedPath;
+  let relativePath = safePath;
+  if (path.isAbsolute(relativePath)) {
+    const parsedPath = path.parse(relativePath);
+    relativePath = relativePath.slice(parsedPath.root.length);
+  }
+  relativePath = relativePath.replace(/^[/\\]+/, "");
+  const rootPath = path.resolve(ROOT);
+  const rootPrefix = path.normalize(rootPath + path.sep);
+  let filePath = path.resolve(rootPath, relativePath);
+  if (!filePath.startsWith(rootPrefix)) {
     send(res, 403, "Forbidden");
     return;
   }
