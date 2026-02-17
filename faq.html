@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FAQ & Help - Outfique</title>
+		<style>
+			:root {
+				--outflique-teal: #5cc1b6;
+				--outflique-mint: #a8c9b6;
+				--outflique-cream: #f1e3b6;
+				--outflique-peach: #f9a6a1;
+				--outflique-pink: #f75088;
+				--outflique-ink: #2a2624;
+				--outflique-paper: #fff7ef;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				font-family: "Inter", Arial, Helvetica, sans-serif;
+				background: linear-gradient(135deg, #3b1d0f, #f5d98a);
+				color: #fff;
+				line-height: 1.6;
+			}
+
+			.container {
+				max-width: 1100px;
+				margin: auto;
+				padding: 40px 20px 60px;
+			}
+
+			.header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 16px;
+				margin-bottom: 30px;
+			}
+
+			.logo {
+				width: 120px;
+				height: auto;
+				display: block;
+				border-radius: 16px;
+				background: #fff;
+				padding: 6px;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+			}
+
+			.nav {
+				display: flex;
+				gap: 18px;
+				flex-wrap: wrap;
+			}
+
+			.nav a {
+				text-decoration: none;
+				color: #1b1b1b;
+				font-weight: 700;
+				letter-spacing: 0.5px;
+				text-transform: uppercase;
+				background: #fff;
+				padding: 8px 18px;
+				border-radius: 999px;
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+
+			.nav a:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 10px 16px rgba(0, 0, 0, 0.28);
+			}
+
+			.card {
+				background: rgba(255, 255, 255, 0.85);
+				border-radius: 24px;
+				padding: 28px 30px;
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+				color: var(--outflique-ink);
+				margin-bottom: 20px;
+			}
+
+			h1 {
+				font-size: clamp(30px, 4vw, 46px);
+				margin: 0 0 18px;
+				letter-spacing: 2px;
+				color: #fff;
+				text-align: center;
+			}
+
+			h2 {
+				font-size: clamp(20px, 3vw, 28px);
+				margin: 24px 0 12px;
+				color: var(--outflique-pink);
+				border-bottom: 2px solid var(--outflique-teal);
+				padding-bottom: 8px;
+			}
+
+			h3 {
+				font-size: clamp(16px, 2vw, 20px);
+				margin: 18px 0 10px;
+				color: var(--outflique-teal);
+			}
+
+			p {
+				line-height: 1.7;
+				font-size: 16px;
+				margin-bottom: 16px;
+			}
+
+			.faq-item {
+				margin-bottom: 24px;
+				padding: 16px;
+				background: rgba(92, 193, 182, 0.05);
+				border-radius: 12px;
+				border-left: 4px solid var(--outflique-teal);
+			}
+
+			.question {
+				font-weight: 700;
+				font-size: 18px;
+				color: var(--outflique-pink);
+				margin-bottom: 8px;
+			}
+
+			.answer {
+				color: var(--outflique-ink);
+			}
+
+			.highlight {
+				background: rgba(247, 80, 136, 0.1);
+				padding: 12px 16px;
+				border-radius: 8px;
+				border-left: 4px solid var(--outflique-pink);
+				margin: 16px 0;
+			}
+
+			.important {
+				font-weight: 600;
+				color: var(--outflique-pink);
+			}
+
+			ul {
+				margin: 12px 0 16px 24px;
+				line-height: 1.8;
+			}
+
+			li {
+				margin-bottom: 8px;
+			}
+
+			.footer {
+				margin-top: 30px;
+				font-size: 14px;
+				opacity: 0.8;
+				text-align: center;
+				color: #fff;
+			}
+
+			.contact-box {
+				background: linear-gradient(135deg, var(--outflique-teal), var(--outflique-mint));
+				padding: 20px;
+				border-radius: 12px;
+				margin-top: 24px;
+				color: #fff;
+			}
+
+			.contact-box h3 {
+				color: #fff;
+				margin-top: 0;
+			}
+
+			.contact-box a {
+				color: #fff;
+				font-weight: 600;
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<header class="header">
+				<img class="logo" src="DESIGN NI JARED.png" alt="Outfique logo" />
+				<nav class="nav" aria-label="Primary">
+					<a href="about outfique.html">About</a>
+					<a href="1st outfique.html">Home</a>
+					<a href="team.html">Team</a>
+					<a href="collections ko beh.html">Categories</a>
+					<a href="faq.html">FAQ</a>
+				</nav>
+			</header>
+
+			<h1>💡 FAQ & Help Center</h1>
+
+			<section class="card">
+				<h2>Subscription & Billing</h2>
+
+				<div class="faq-item">
+					<div class="question">Q: Can I get my money back after cancelling my subscription?</div>
+					<div class="answer">
+						<p>
+							Yes! Outfique offers a <span class="important">flexible refund policy</span> for subscription cancellations:
+						</p>
+						<ul>
+							<li><strong>Within 7 days:</strong> Full refund, no questions asked</li>
+							<li><strong>Within 30 days:</strong> Prorated refund based on unused service time</li>
+							<li><strong>After 30 days:</strong> No refund, but you retain access until the end of your billing period</li>
+						</ul>
+						<div class="highlight">
+							<strong>Important:</strong> Refunds are processed within 5-7 business days after cancellation request approval. The amount will be credited to your original payment method.
+						</div>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="question">Q: How do I cancel my subscription?</div>
+					<div class="answer">
+						<p>Cancelling your Outfique subscription is easy:</p>
+						<ol>
+							<li>Log in to your account</li>
+							<li>Go to "Account Settings"</li>
+							<li>Click on "Subscription Management"</li>
+							<li>Select "Cancel Subscription"</li>
+							<li>Follow the prompts to confirm your cancellation</li>
+						</ol>
+						<p>You will receive a confirmation email once your cancellation is processed.</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="question">Q: What happens to my saved outfits after cancellation?</div>
+					<div class="answer">
+						<p>
+							Your saved outfits and wardrobe data remain accessible in <strong>read-only mode</strong> for 90 days after cancellation. 
+							During this time, you can:
+						</p>
+						<ul>
+							<li>View and download your saved outfits</li>
+							<li>Export your wardrobe data</li>
+							<li>Reactivate your subscription without losing any data</li>
+						</ul>
+						<p>After 90 days, data may be permanently deleted unless you reactivate your subscription.</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="question">Q: Are there any cancellation fees?</div>
+					<div class="answer">
+						<p>
+							<span class="important">No cancellation fees!</span> Outfique believes in transparency and flexibility. 
+							You can cancel anytime without any hidden charges or penalties.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="card">
+				<h2>General Questions</h2>
+
+				<div class="faq-item">
+					<div class="question">Q: What is Outfique?</div>
+					<div class="answer">
+						<p>
+							Outfique is a smart fashion website system that helps you create outfit combinations using the clothes you already own. 
+							Upload images of your clothing and generate creative outfit ideas with our AI-powered tools.
+						</p>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="question">Q: Is Outfique free to use?</div>
+					<div class="answer">
+						<p>
+							Outfique offers both free and premium subscription plans:
+						</p>
+						<ul>
+							<li><strong>Free Plan:</strong> Basic outfit creation with limited AI generations (5 per month)</li>
+							<li><strong>Premium Plan:</strong> Unlimited AI generations, advanced styling tools, and exclusive collections</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="question">Q: How does the AI outfit generator work?</div>
+					<div class="answer">
+						<p>
+							Our AI uses advanced image generation technology (powered by Stable Diffusion) to create outfit combinations based on:
+						</p>
+						<ul>
+							<li>Your uploaded clothing items</li>
+							<li>Style preferences you specify</li>
+							<li>Current fashion trends</li>
+							<li>Seasonal recommendations</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="card">
+				<h2>Technical Support</h2>
+
+				<div class="faq-item">
+					<div class="question">Q: What browsers are supported?</div>
+					<div class="answer">
+						<p>
+							Outfique works best on modern browsers including:
+						</p>
+						<ul>
+							<li>Google Chrome (recommended)</li>
+							<li>Mozilla Firefox</li>
+							<li>Safari (macOS/iOS)</li>
+							<li>Microsoft Edge</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="faq-item">
+					<div class="question">Q: What image formats are supported for uploads?</div>
+					<div class="answer">
+						<p>
+							You can upload images in the following formats: <strong>JPG, JPEG, PNG</strong>. 
+							For best results, use high-quality images with good lighting and clear views of the clothing items.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="card">
+				<div class="contact-box">
+					<h3>🆘 Still Need Help?</h3>
+					<p>
+						If you couldn't find the answer to your question, please contact our support team:
+					</p>
+					<p>
+						📧 Email: <a href="mailto:support@outfique.com">support@outfique.com</a><br>
+						⏰ Response time: Within 24 hours
+					</p>
+					<p>
+						For urgent subscription or refund inquiries, please include your account email and order number in your message.
+					</p>
+				</div>
+			</section>
+
+			<div class="footer">© 2026 Outfique. All rights reserved.</div>
+		</div>
+	</body>
+</html>
